@@ -1,12 +1,37 @@
+const { sequelize, DataTypes } = require('sequelize');
 const db = require('../../config/db');
 
-exports.getAllUsers = (callback) => {
-  const sql = 'SELECT * FROM users';
-  db.query(sql, (err, results) => {
-    if (err) {
-      callback(err, null);
-      return;
+const User = db.define(
+  'users',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    nome: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    passwd: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    cargo: {
+      type: DataTypes.ENUM('aluno', 'professor', 'admin'),
+      allowNull: false
     }
-    callback(null, results);
-  });
-};
+  },
+);
+
+// `sequelize.define` também retorna o modelo
+console.log(User === sequelize.models.User); // true
+
+module.exports = {
+  User
+}
