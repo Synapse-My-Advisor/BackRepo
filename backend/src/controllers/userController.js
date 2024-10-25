@@ -2,17 +2,6 @@ const db = require('../../config/db');
 const model = require('../models/userModel');
 const { User } = require('../models/userModel');
 
-// create
-// function create(req, res) {
-//     try {
-//         model.create(req.body);
-//         res.status(201).send('Usuario criado com sucesso')
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send('Não foi possivel criar o usuario');
-//     }
-// }
-
 const create = async (req, res) => {
     try {
         const { nome, email, passwd, cargo } = req.body;
@@ -33,7 +22,7 @@ const create = async (req, res) => {
 }
 
 // puxar todos os usuários
-const getall = async (req, res) => {
+const getAll = async (req, res) => {
     try {
         const usuarios = await User.findAll();
         return res.status(200).json(usuarios);
@@ -44,7 +33,7 @@ const getall = async (req, res) => {
 };
 
 // puxar usuario por id
-const getbyid = async (req, res) => {
+const getById = async (req, res) => {
     try {
         const { id } = req.params;
         const usuario = await User.findByPk(id);
@@ -59,20 +48,6 @@ const getbyid = async (req, res) => {
         return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
     }
 };
-
-// update
-// function put(req, res) {
-//     const { id } = req.params;
-//     const { nome, email } = req.body;
-//     const sql = 'UPDATE users SET nome = ?, email = ? WHERE id = ?';
-//     db.query(sql, [nome, email, id], (erro, resultado) => {
-//         if (erro) {
-//             res.status(500).send('Erro ao atualizar usuário');
-//         } else {
-//             res.send('Usuário atualizado com sucesso!');
-//         }
-//     });
-// }
 
 // update por id    
 const put = async (req, res) => {
@@ -96,19 +71,6 @@ const put = async (req, res) => {
     }
 };
 
-// delete
-// function del(req, res) {
-//     const { id } = req.params;
-//     const sql = 'DELETE FROM users WHERE id = ?';
-//     db.query(sql, [id], (erro, resultado) => {
-//         if (erro) {
-//             res.status(500).send('Erro ao deletar usuário');
-//         } else {
-//             res.send('Usuário deletado com sucesso!');
-//         }
-//     });
-// }
-
 // deletar usuario por id
 const del = async (req, res) => {
     try {
@@ -129,13 +91,9 @@ const del = async (req, res) => {
 };
 
 module.exports = {
-    // create,
-    // get,
-    // put,
-    // del
     create,
-    getall,
-    getbyid,
+    getAll,
+    getById,
     put,
     del
 };

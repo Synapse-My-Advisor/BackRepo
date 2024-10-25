@@ -15,9 +15,9 @@ app.use(bodyParser.json());
 app.post('/usuarios', controller.create);
 
 // Rota de leitura (READ)
-app.get('/usuarios', controller.getall);
+app.get('/usuarios', controller.getAll);
 
-app.get('/usuarios/:id', controller.getbyid);
+app.get('/usuarios/:id', controller.getById);
 
 // Rota de atualização (UPDATE)
 app.put('/usuarios/:id', controller.put);
