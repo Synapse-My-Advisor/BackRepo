@@ -39,6 +39,35 @@ const User = db.define(
   }
 );
 
+const Tg = db.define(
+  'Tg',
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+    },
+    nome: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    tittle: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+  },
+  {
+    tableName: 'tg',
+    timestamps: true
+  }
+);
+
 // Verifica se o modelo está registrado corretamente
 console.log(User === db.models.User); // Deve imprimir `true`
 

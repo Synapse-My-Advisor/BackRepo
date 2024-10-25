@@ -32,17 +32,6 @@ const create = async (req, res) => {
     };
 }
 
-
-// read
-// async function get(req, res) {
-//     try {
-//         const users = await model.get()
-//         res.json(users)
-//     } catch (error) {
-//         res.json(error)
-//     }
-// }
-
 // puxar todos os usuários
 const getall = async (req, res) => {
     try {
