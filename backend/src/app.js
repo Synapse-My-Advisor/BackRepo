@@ -25,3 +25,5 @@ app.delete('/usuarios/:id', controller.del);
 app.listen(porta, () => {
     console.log(`Servidor rodando em http://localhost:${porta}`);
 });
+
+module.exports = router;

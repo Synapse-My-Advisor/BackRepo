@@ -1,8 +1,10 @@
-const { sequelize, DataTypes } = require('sequelize');
-const db = require('../../config/db');
+// src/models/userModel.js
+
+const { DataTypes } = require('sequelize');
+const { db } = require('../../config/db');
 
 const User = db.define(
-  'users',
+  'User',
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,7 +18,11 @@ const User = db.define(
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true
+      }
     },
     passwd: {
       type: DataTypes.STRING,
@@ -27,11 +33,15 @@ const User = db.define(
       allowNull: false
     }
   },
+  {
+    tableName: 'users',
+    timestamps: true
+  }
 );
 
-// `sequelize.define` também retorna o modelo
-console.log(User === sequelize.models.User); // true
+// Verifica se o modelo está registrado corretamente
+console.log(User === db.models.User); // Deve imprimir `true`
 
 module.exports = {
   User
-}
+};
