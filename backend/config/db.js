@@ -5,6 +5,8 @@ require('dotenv').config();
 const db = new Sequelize('meu_orientador', 'root', 'root', {
   host: 'localhost',
   dialect: 'mysql',
+  // quando der bozó no banco, deixa true
+  logging:false
 });
 
 async function sincroniza() {

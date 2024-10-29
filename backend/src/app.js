@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../config/db');
 const controller = require('./controllers/userController');
+const { prompt } = require('./vendor/llm');
 const router = express.router;
 
 const app = express();
@@ -28,5 +29,7 @@ app.delete('/usuarios/:id', controller.del);
 app.listen(porta, () => {
     console.log(`Servidor rodando em http://localhost:${porta}`);
 });
+
+prompt().then(console.log)
 
 module.exports = router;
