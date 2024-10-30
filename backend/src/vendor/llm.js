@@ -5,7 +5,7 @@ function prompt() {
         const options = {
             method: 'post',
             url: 'http://127.0.0.1:5000/home',
-            body: '{"content":"teste"}',
+            body: '{"content":"como faço pra fazer queijo?"}',
             headers:{
                 "Content-Type":"application/json"
             }
