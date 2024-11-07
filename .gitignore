@@ -9,7 +9,7 @@ yarn-error.log*
 node_modules/
 
 # Arquivos do ambiente
-variaveis.env
+.env
 
 # Sistema operacional
 .DS_Store
