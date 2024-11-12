@@ -4,7 +4,7 @@ function prompt() {
     return new Promise((resolve, reject) => {
         const options = {
             method: 'post',
-            url: 'http://127.0.0.1:5000/home',
+            url: 'https://llm-mateus-robers-projects.vercel.app/home',
             body: '{"content":"resuma o conteudo","tg_id":1, "user_id":"mateus"}',
             headers:{
                 "Content-Type":"application/json"
@@ -18,6 +18,4 @@ function prompt() {
     })
 }
 
-module.exports = {
-    prompt
-};
+module.exports = prompt;

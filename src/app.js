@@ -1,35 +1,23 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const db = require('../config/db');
-const controller = require('./controllers/userController');
-const { prompt } = require('./vendor/llm');
-const router = express.router;
+const prompt = require('./vendor/llm');
+const cors = require('cors');
+const rotasUsuarios = require('./routes/usuario.routes');
 
 const app = express();
 const porta = 3000;
 
-db.sincroniza()
+app.use(cors());
 
-app.use(bodyParser.json());
+db.sincroniza();
 
-// Rota de criação (CREATE)
-app.post('/usuarios', controller.create);
+app.use(express.json());
 
-// Rota de leitura (READ)
-app.get('/usuarios', controller.getAll);
-
-app.get('/usuarios/:id', controller.getById);
-
-// Rota de atualização (UPDATE)
-app.put('/usuarios/:id', controller.put);
-
-// Rota de exclusão (DELETE)
-app.delete('/usuarios/:id', controller.del);
+app.use(rotasUsuarios);
 
 app.listen(porta, () => {
     console.log(`Servidor rodando em http://localhost:${porta}`);
 });
 
-prompt().then(console.log)
+prompt().then(console.log);
 
-module.exports = router;
